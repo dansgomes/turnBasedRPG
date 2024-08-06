@@ -13,5 +13,6 @@ public class Floor : MonoBehaviour
     private void Awake()
     {
         tilemapRenderer = this.transform.GetComponent<TilemapRenderer>();
+
     }
 }

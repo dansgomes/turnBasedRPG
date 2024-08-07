@@ -19,7 +19,7 @@ public class TileLogic
     public TileLogic(Vector3Int cellPos, Vector3 worldPosition, Floor tempfloor)
     {
         pos = cellPos;
-        worldPosition = worldPos;
+        worldPos = worldPosition;
         floor = tempfloor;
         contentOrder = tempfloor.contentOrder;
     }

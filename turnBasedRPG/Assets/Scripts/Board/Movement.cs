@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public bool teste;
-    public Vector3Int destino;
+    public List<Vector3Int> path;
     SpriteRenderer SR;
     Transform jumper;
     TileLogic tileAtual;

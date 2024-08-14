@@ -20,12 +20,13 @@ public class Board : MonoBehaviour
     private void Start()
     {
         LoadFloors();
-        Debug.Log("Foram criados " + tiles.Count + " tiles");
     }
 
     public void InitSequence()
     {
         LoadFloors();
+        Debug.Log("Foram criados " + tiles.Count + " tiles");
+        ShadowOrdering();
     }
 
     void LoadFloors()
@@ -66,7 +67,7 @@ public class Board : MonoBehaviour
             Vector3Int pos = t.pos;
             IsNECheck(floorToCheck, t, pos + Vector3Int.right);
             IsNECheck(floorToCheck, t, pos + Vector3Int.up);
-            IsNECheck(floorToCheck, t, pos + Vector3Int.right + pos + Vector3Int.up);
+            IsNECheck(floorToCheck, t, pos + Vector3Int.right + Vector3Int.up);
         }
     }
 
@@ -76,5 +77,13 @@ public class Board : MonoBehaviour
         {
             t.contentOrder = floor.order;
         }
+    }
+
+    public static TileLogic GetTile (Vector3Int pos)
+    {
+        TileLogic tile = null;
+        instance.tiles.TryGetValue(pos, out tile);
+
+        return tile;
     }
 }

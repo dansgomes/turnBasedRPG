@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    const float MoveSpeed = 0.5f;
     public bool teste;
     public List<Vector3Int> path;
     SpriteRenderer SR;
@@ -28,30 +29,40 @@ public class Movement : MonoBehaviour
 
     IEnumerator Move()
     {
-        yield return null;
-        TileLogic t = Board.instance.tiles[destino];
+        tileAtual = Board.GetTile(path[0]);
+        transform.position = tileAtual.worldPos;
 
-        Vector3 startPos = transform.position;
-        Vector3 endPos = t.worldPos;
-        float totalTime=1;
-        float tempTime=0;
-
-        if(tileAtual == null)
-            tileAtual = t;
-        if (tileAtual.floor != t.floor)
-            StartCoroutine(Jump(t, totalTime));
-
-        while(transform.position != endPos)
+        for (int i=1; i < path.Count; i++)
         {
-            tempTime += Time.deltaTime;
-            float perc = tempTime / totalTime;
-            transform.position = Vector3.Lerp(startPos, endPos, perc);
+            TileLogic to = Board.GetTile(path[i]);
+            if (to == null)
+            {
+                continue;
+            }
+            if(tileAtual.floor != to.floor)
+            {
+                //yield return StartCoroutine(Jump());
+            }
+            else
+            {
+                yield return Walk(to);
+            }
+        }
+    }
+
+    IEnumerator Walk(TileLogic to)
+    {
+        int id = LeanTween.move(transform.gameObject, to.worldPos, MoveSpeed).id;
+        tileAtual = to;
+
+        yield return new WaitForSeconds(MoveSpeed * 0.5f);
+        SR.sortingOrder = to.contentOrder;
+
+        while(LeanTween.descr(id)!= null)
+        {
             yield return null;
         }
-
-
-        SR.sortingOrder = t.contentOrder;
-        t.content = this.gameObject;
+        to.content = this.gameObject;
     }
 
     IEnumerator Jump(TileLogic t, float totalTime)

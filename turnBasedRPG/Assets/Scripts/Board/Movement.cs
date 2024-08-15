@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     const float MoveSpeed = 0.5f;
+    const float jumpHeight = 0.5f;
     public bool teste;
     public List<Vector3Int> path;
     SpriteRenderer SR;
@@ -38,14 +39,16 @@ public class Movement : MonoBehaviour
             if (to == null)
             {
                 continue;
+
+                tileAtual.content = null;
             }
             if(tileAtual.floor != to.floor)
             {
-                //yield return StartCoroutine(Jump());
+                yield return StartCoroutine(Jump(to));
             }
             else
             {
-                yield return Walk(to);
+                yield return StartCoroutine(Walk(to));
             }
         }
     }
@@ -65,33 +68,29 @@ public class Movement : MonoBehaviour
         to.content = this.gameObject;
     }
 
-    IEnumerator Jump(TileLogic t, float totalTime)
+    IEnumerator Jump(TileLogic to)
     {
-        Vector3 halfwayPos;
-        Vector3 startpos = halfwayPos = jumper.localPosition;
-        halfwayPos.y += 0.5f;
-        float tempTime = 0;
+        int id1 = LeanTween.move(transform.gameObject, to.worldPos, MoveSpeed).id;
+        LeanTween.moveLocalY(jumper.gameObject, jumpHeight, MoveSpeed * 0.5f).
+            setLoopPingPong(1).setEase(LeanTweenType.easeInOutQuad);
 
-        if(tileAtual.floor.tilemap.tileAnchor.y < t.floor.tilemap.tileAnchor.y)
+        float timerOrderUpdate = MoveSpeed;
+        if(tileAtual.floor.tilemap.tileAnchor.y > to.floor.tilemap.tileAnchor.y)
         {
-            SR.sortingOrder = t.contentOrder;
+            timerOrderUpdate *= 0.85f;
         }
-
-        while(jumper.localPosition != halfwayPos)
+        else
         {
-            tempTime += Time.deltaTime;
-            float perc = tempTime / (totalTime / 2);
-            jumper.localPosition = Vector3.Lerp(startpos, halfwayPos, perc);
+            timerOrderUpdate *= 0.2f;
+        }
+        yield return new WaitForSeconds(timerOrderUpdate);
+        tileAtual = to;
+        SR.sortingOrder = to.contentOrder;
+
+        while(LeanTween.descr(id1)!= null)
+        {
             yield return null;
         }
-
-        tempTime = 0;
-        while(jumper.localPosition != startpos)
-        {
-            tempTime += Time.deltaTime;
-            float perc = tempTime / (totalTime / 2);
-            jumper.localPosition = Vector3.Lerp(halfwayPos, startpos, perc);
-            yield return null;
-        }
+        to.content = this.gameObject;
     }
 }

@@ -16,7 +16,7 @@ public class StateMachineController : MonoBehaviour
 
     private void Start()
     {
-        //ChangeTo<LoadState>();
+        ChangeTo<LoadState>();
     }
 
     public void ChangeTo<T>() where T : State
@@ -29,7 +29,7 @@ public class StateMachineController : MonoBehaviour
         public T GetState<T>() where T : State
     {
         T target = GetComponent<T>();
-        if (target != null)
+        if (target == null)
             target = gameObject.AddComponent<T>();
         return target;
     }

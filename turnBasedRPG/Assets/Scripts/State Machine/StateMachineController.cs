@@ -9,6 +9,7 @@ public class StateMachineController : MonoBehaviour
     State _current;
     bool busy;
     public State current { get { return _current;}}
+    public Transform selector;
     private void Awake()
     {
         instance = this;

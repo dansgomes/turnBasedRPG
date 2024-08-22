@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void DelegateModel(object sender, object args);
+
 public class InputController : MonoBehaviour
 {
 
     float hCooldown = 0;
     float vCooldown = 0;
     float cooldownTimer = 0.5f;
+    public static InputController instance;
+    public DelegateModel OnMove;
+    public DelegateModel OnFire;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Update()
     {
@@ -30,12 +40,20 @@ public class InputController : MonoBehaviour
         else      
             vCooldown = 0;
 
-        if(moved!= Vector2Int.zero)
-            Debug.Log(moved);
-
-        if (Input.GetButtonDown("Fire1"))
+        if (moved != Vector2Int.zero && OnMove!= null)
         {
-            Debug.Log("aaa");
+            OnMove(null, moved);
+        }
+
+        if (Input.GetButtonDown("Fire1") && OnFire!= null)
+        {
+            OnFire(null, 1);
+
+        }
+        if (Input.GetButtonDown("Fire2") && OnFire!= null)
+        {
+            OnFire(null, 2);
+
         }
     }
 

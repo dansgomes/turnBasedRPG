@@ -24,7 +24,7 @@ public class InputController : MonoBehaviour
         int h = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
         int v = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
 
-        Vector2Int moved = new Vector2Int(0, 0);
+        Vector3Int moved = new Vector3Int(0, 0, 0);
 
         if (h!= 0)
         {
@@ -40,7 +40,7 @@ public class InputController : MonoBehaviour
         else      
             vCooldown = 0;
 
-        if (moved != Vector2Int.zero && OnMove!= null)
+        if (moved != Vector3Int.zero && OnMove!= null)
         {
             OnMove(null, moved);
         }

@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChooseActionState : MonoBehaviour
+public class ChooseActionState : State
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Enter()
     {
-        
+        base.Enter();
+        InputController.instance.OnMove += OnMove;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Exit()
     {
-        
+        base.Exit();
+        InputController.instance.OnMove -= OnMove;
+    }
+
+    void OnMove(object sender, object args)
+    {
+
     }
 }

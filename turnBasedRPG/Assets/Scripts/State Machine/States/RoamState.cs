@@ -24,7 +24,6 @@ public class RoamState : State
 
         if (t != null)
         {
-            Selector.instance.position = t.pos;
             Selector.instance.tile = t;
             Selector.instance.spriteRenderer.sortingOrder = t.contentOrder;
             Selector.instance.transform.position = t.worldPos;
@@ -36,7 +35,6 @@ public class RoamState : State
         if (Selector.instance.position == null)
         {
             TileLogic t = Board.GetTile(new Vector3Int(0,0,0));
-            Selector.instance.position = t.pos;
             Selector.instance.tile = t;
             Selector.instance.spriteRenderer.sortingOrder = t.contentOrder;
             Selector.instance.transform.position = t.worldPos;

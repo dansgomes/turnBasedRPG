@@ -8,6 +8,7 @@ public class RoamState : State
     {
         base.Enter();
         InputController.instance.OnMove += OnMove;
+        InputController.instance.OnFire += OnFire;
         CheckNullPosition();
     }
 
@@ -15,6 +16,7 @@ public class RoamState : State
     {
         base.Exit();
         InputController.instance.OnMove -= OnMove;
+        InputController.instance.OnFire -= OnFire;
     }
 
     void OnMove(object sender, object args)
@@ -27,6 +29,20 @@ public class RoamState : State
             Selector.instance.tile = t;
             Selector.instance.spriteRenderer.sortingOrder = t.contentOrder;
             Selector.instance.transform.position = t.worldPos;
+        }
+    }
+
+    void OnFire(object sender, object args)
+    {
+        int button = (int)args;
+
+        if (button == 1)
+        {
+
+        }
+        else if (button == 2)
+        {
+            StateMachineController.instance.ChangeTo<ChooseActionState>();
         }
     }
 

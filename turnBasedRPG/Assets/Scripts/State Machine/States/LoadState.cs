@@ -16,6 +16,6 @@ public class LoadState : State
         MapLoader.instance.CriaUnidades();
         yield return null;
         
-        StateMachineController.instance.ChangeTo<RoamState>();
+        StateMachineController.instance.ChangeTo<ChooseActionState>();
     }
 }

@@ -32,7 +32,7 @@ public class RoamState : State
 
     void CheckNullPosition()
     {
-        if (Selector.instance.position == null)
+        if (Selector.instance.tile == null)
         {
             TileLogic t = Board.GetTile(new Vector3Int(0,0,0));
             Selector.instance.tile = t;

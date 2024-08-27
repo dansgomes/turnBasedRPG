@@ -14,6 +14,7 @@ public class StateMachineController : MonoBehaviour
     [Header("ChooseActionState")]
     public List<Image> chooseActionButtons;
     public Image chooseActionSelection;
+    public PanelPositioner chooseActionPanel;
     private void Awake()
     {
         instance = this;

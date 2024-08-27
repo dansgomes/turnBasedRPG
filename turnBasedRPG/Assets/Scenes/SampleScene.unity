@@ -1345,8 +1345,9 @@ GameObject:
   - component: {fileID: 1416569937}
   - component: {fileID: 1416569939}
   - component: {fileID: 1416569938}
+  - component: {fileID: 1416569940}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ChooseAction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1415,6 +1416,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416569936}
   m_CullTransparentMesh: 1
+--- !u!114 &1416569940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416569936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c63427f998158f46bffc6f437783e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - name: Show
+    position: {x: 0, y: 28, z: 0}
+    anchorMin: {x: 0, y: 0}
+    anchorMax: {x: 0, y: 0}
+  - name: Hide
+    position: {x: 0, y: -39, z: 0}
+    anchorMin: {x: 0, y: 0}
+    anchorMax: {x: 0, y: 0}
 --- !u!1 &1426656027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,6 +1666,7 @@ MonoBehaviour:
   - {fileID: 497505834}
   - {fileID: 708526073}
   chooseActionSelection: {fileID: 969945151}
+  chooseActionPanel: {fileID: 1416569940}
 --- !u!1 &1876718765
 GameObject:
   m_ObjectHideFlags: 0

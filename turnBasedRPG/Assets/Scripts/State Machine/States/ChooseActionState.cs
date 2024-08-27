@@ -9,8 +9,10 @@ public class ChooseActionState : State
     {
         base.Enter();
         index = 0;
+        ChangeSelector();
         inputs.OnMove += OnMove;
         inputs.OnFire += OnFire;
+        machine.chooseActionPanel.MoveTo("Show");
     }
 
     public override void Exit()
@@ -18,6 +20,7 @@ public class ChooseActionState : State
         base.Exit();
         inputs.OnMove -= OnMove;
         inputs.OnFire -= OnFire;
+        machine.chooseActionPanel.MoveTo("Hide");
     }
 
     void OnMove(object sender, object args)

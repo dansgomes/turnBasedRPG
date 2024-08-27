@@ -15,7 +15,16 @@ public class LoadState : State
         yield return null;
         MapLoader.instance.CriaUnidades();
         yield return null;
+        InitialTurnOrdering();
         
         StateMachineController.instance.ChangeTo<ChooseActionState>();
+    }
+
+    void InitialTurnOrdering()
+    {
+        int first = Random.Range(0, machine.units.Count);
+        Turn.hasActed = false;
+        Turn.hasMoved = false;
+        Turn.unit = machine.units[first];
     }
 }

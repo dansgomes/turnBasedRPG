@@ -7,6 +7,7 @@ public class ChooseActionState : State
     int index;
     public override void Enter()
     {
+        MoveSelector(Turn.unit.tile);
         base.Enter();
         index = 0;
         ChangeSelector();

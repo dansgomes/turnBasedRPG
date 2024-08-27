@@ -10,7 +10,7 @@ public class ChooseActionState : State
         MoveSelector(Turn.unit.tile);
         base.Enter();
         index = 0;
-        ChangeSelector();
+        ChangeUISelector();
         inputs.OnMove += OnMove;
         inputs.OnFire += OnFire;
         machine.chooseActionPanel.MoveTo("Show");
@@ -30,11 +30,11 @@ public class ChooseActionState : State
         if(button == Vector3Int.left)
         {
             index--;
-            ChangeSelector();
+            ChangeUISelector();
         }else if(button == Vector3Int.right)
         {
             index++;
-            ChangeSelector();
+            ChangeUISelector();
         }
     }
 
@@ -51,7 +51,7 @@ public class ChooseActionState : State
         }
     }
 
-    void ChangeSelector()
+    void ChangeUISelector()
     {
         if (index == -1)
         {
@@ -72,7 +72,7 @@ public class ChooseActionState : State
         switch (index)
         {
             case 0:
-                //machine.ChangeTo<MoveTargetState>();
+                machine.ChangeTo<MoveSelectionState>();
                 break;
             case 1:
                 //machine.ChangeTo<ActionSelectState>();

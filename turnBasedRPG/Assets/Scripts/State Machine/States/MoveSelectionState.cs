@@ -8,14 +8,14 @@ public class MoveSelectionState : State
     {
         base.Enter();
         inputs.OnMove += OnMoveTileSelector;
-        //inputs.OnFire += OnFire;
+        inputs.OnFire += OnFire;
     }
 
     public override void Exit()
     {
         base.Exit();
         inputs.OnMove -= OnMoveTileSelector;
-        //inputs.OnFire -= OnFire;
+        inputs.OnFire -= OnFire;
     }
 
     void OnFire(object sender, object args)
@@ -24,7 +24,7 @@ public class MoveSelectionState : State
 
         if (button == 1)
         {
-            //machine.ChangeTo<MoveSequenceState>();
+            machine.ChangeTo<MoveSequenceState>();
         }
         else if (button == 2)
         {

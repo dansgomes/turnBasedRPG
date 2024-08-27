@@ -6,8 +6,6 @@ public class Movement : MonoBehaviour
 {
     const float MoveSpeed = 0.5f;
     const float jumpHeight = 0.5f;
-    public bool teste;
-    public List<Vector3Int> path;
     SpriteRenderer SR;
     Transform jumper;
     TileLogic tileAtual;
@@ -18,30 +16,14 @@ public class Movement : MonoBehaviour
         SR = GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void Update()
+    public IEnumerator Move(List<TileLogic> path)
     {
-        if (teste)
-        {
-            teste = false;
-            StopAllCoroutines();
-            StartCoroutine(Move());
-        }
-    }
+        tileAtual = Turn.unit.tile;
+        tileAtual.content = null;
 
-    IEnumerator Move()
-    {
-        tileAtual = Board.GetTile(path[0]);
-        transform.position = tileAtual.worldPos;
-
-        for (int i=1; i < path.Count; i++)
-        {
-            TileLogic to = Board.GetTile(path[i]);
-            if (to == null)
-            {
-                continue;
-
-                tileAtual.content = null;
-            }
+        for (int i=0; i < path.Count; i++) { 
+            TileLogic to = path[i];
+            
             if(tileAtual.floor != to.floor)
             {
                 yield return StartCoroutine(Jump(to));
@@ -50,7 +32,7 @@ public class Movement : MonoBehaviour
             {
                 yield return StartCoroutine(Walk(to));
             }
-        }
+      }  
     }
 
     IEnumerator Walk(TileLogic to)

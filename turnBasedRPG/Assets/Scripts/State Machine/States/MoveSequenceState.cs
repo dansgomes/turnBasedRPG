@@ -17,8 +17,9 @@ public class MoveSequenceState : State
 
         Movement movement = Turn.unit.GetComponent<Movement>();
         yield return StartCoroutine(movement.Move(path));
+        Turn.unit.tile = machine.selectedTile;
         yield return new WaitForSeconds(0.5f);
         Turn.hasMoved = true;
-        //machine.ChangeTo<TurnEndState>();
+        machine.ChangeTo<TurnEndState>();
     }
 }

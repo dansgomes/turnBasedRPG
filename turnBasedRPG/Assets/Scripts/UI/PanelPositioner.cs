@@ -7,7 +7,7 @@ public class PanelPositioner : MonoBehaviour
     public List<PanelPosition> positions;
     RectTransform rect;
 
-    private void Awake()
+    void Awake()
     {
         rect = GetComponent<RectTransform>();
     }

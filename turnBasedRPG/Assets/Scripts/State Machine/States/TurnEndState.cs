@@ -22,7 +22,7 @@ public class TurnEndState : State
         Turn.hasActed = Turn.hasMoved = false;
         machine.units.Remove(Turn.unit);
         machine.units.Add(Turn.unit);
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
         machine.ChangeTo<TurnBeginState>();
     }
 }

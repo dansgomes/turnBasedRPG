@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChooseActionState : State
 {
@@ -11,6 +12,7 @@ public class ChooseActionState : State
         base.Enter();
         index = 0;
         ChangeUISelector();
+        CheckAction();
         inputs.OnMove += OnMove;
         inputs.OnFire += OnFire;
         machine.chooseActionPanel.MoveTo("Show");
@@ -72,7 +74,8 @@ public class ChooseActionState : State
         switch (index)
         {
             case 0:
-                machine.ChangeTo<MoveSelectionState>();
+                if(!Turn.hasMoved)
+                    machine.ChangeTo<MoveSelectionState>();
                 break;
             case 1:
                 //machine.ChangeTo<ActionSelectState>();
@@ -81,9 +84,28 @@ public class ChooseActionState : State
                 //machine.ChangeTo<ItemSelectState>();
                 break;
             case 3:
-                //machine.ChangeTo<WaitState>();
+                machine.ChangeTo<TurnEndState>();
                 break;
                                            
+        }
+    }
+
+    void CheckAction()
+    {
+        PaintButton(machine.chooseActionButtons[0], Turn.hasMoved);
+        PaintButton(machine.chooseActionButtons[1], Turn.hasActed);
+        PaintButton(machine.chooseActionButtons[2], Turn.hasActed);
+    }
+
+    void PaintButton(Image image, bool check)
+    {
+        if (check)
+        {
+            image.color = Color.gray;
+        }
+        else
+        {
+            image.color = Color.white;
         }
     }
 }

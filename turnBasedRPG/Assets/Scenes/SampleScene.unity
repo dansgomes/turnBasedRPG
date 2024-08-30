@@ -1415,12 +1415,12 @@ MonoBehaviour:
   positions:
   - name: Show
     position: {x: 0.5, y: 28, z: 0}
-    anchorMin: {x: 0, y: 0}
-    anchorMax: {x: 0, y: 0}
+    anchorMin: {x: 0.5, y: 0}
+    anchorMax: {x: 0.5, y: 0}
   - name: Hide
     position: {x: 0.5, y: -39, z: 0}
-    anchorMin: {x: 0, y: 0}
-    anchorMax: {x: 0, y: 0}
+    anchorMin: {x: 0.5, y: 0}
+    anchorMax: {x: 0.5, y: 0}
 --- !u!1 &1426656027
 GameObject:
   m_ObjectHideFlags: 0

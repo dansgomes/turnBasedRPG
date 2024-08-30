@@ -21,10 +21,12 @@ public class TurnBeginState : State
 
     void BreakDraw()
     {
-        for(int i=0; i<machine.units.Count; i++)
+        for(int i=0; i<machine.units.Count-1; i++)
         {
             if (machine.units[i].ChargeTime == machine.units[i + 1].ChargeTime)
+            {
                 machine.units[i + 1].ChargeTime += 1;
+            }
         }
     }
 }

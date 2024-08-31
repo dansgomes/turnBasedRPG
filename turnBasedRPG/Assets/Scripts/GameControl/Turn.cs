@@ -5,6 +5,7 @@ using UnityEngine;
 public static class Turn 
 {
     public static Unit unit;
+    public static Skill skill;
     public static bool hasActed;
     public static bool hasMoved;
 }

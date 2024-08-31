@@ -23,6 +23,7 @@ public class StateMachineController : MonoBehaviour
     public List<Image> skillSelectionButtons;
     public Image skillSelectionSelection;
     public PanelPositioner skillSelectionPanel;
+    public Sprite skillSelectionBlocked;
     private void Awake()
     {
         instance = this;

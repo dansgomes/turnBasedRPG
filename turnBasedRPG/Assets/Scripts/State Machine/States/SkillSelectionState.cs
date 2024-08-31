@@ -5,6 +5,8 @@ using UnityEngine;
 public class SkillSelectionState : State
 {
 
+    List<Skill> skills;
+
     public override void Enter()
     {
         base.Enter();
@@ -13,7 +15,7 @@ public class SkillSelectionState : State
         currentUISelector = machine.skillSelectionSelection;
         machine.skillSelectionPanel.MoveTo("Show");
         ChangeUISelector(machine.skillSelectionButtons);
-        //CheckSkills();
+        CheckSkills();
     }
 
     public override void Exit()
@@ -30,7 +32,7 @@ public class SkillSelectionState : State
 
         if (button == 1)
         {
-            //ActionButtons();
+            ActionButtons();
         }
         else if (button == 2)
         {
@@ -50,6 +52,37 @@ public class SkillSelectionState : State
         {
             index++;
             ChangeUISelector(machine.skillSelectionButtons);
+        }
+    }
+
+    void CheckSkills()
+    {
+        Transform skillBook = Turn.unit.transform.Find("SkillBook");
+        skills = new List<Skill>();
+        skills.AddRange(skillBook.GetComponentsInChildren<Skill>());
+
+        for(int i=0; i<5; i++)
+        {
+            if (i < skills.Count)
+            {
+                machine.skillSelectionButtons[i].sprite = skills[i].icon;
+            }else
+            {
+                machine.skillSelectionButtons[i].sprite = machine.skillSelectionBlocked;
+            }
+        }
+    }
+
+    void ActionButtons()
+    {
+        if (index >= skills.Count)
+            return;
+
+        if (skills[index].CanUse())
+        {
+            Debug.Log("Usando" + skills[index].name);
+            Turn.skill = skills[index];
+            machine.ChangeTo<PerformSkillState>();
         }
     }
 }

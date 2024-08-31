@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class State : MonoBehaviour
 {
+
+    protected int index;
+    protected Image currentUISelector;
     protected InputController inputs { get { return InputController.instance; } }
     protected StateMachineController machine { get { return StateMachineController.instance; } }
 
@@ -39,5 +43,20 @@ public class State : MonoBehaviour
         Selector.instance.spriteRenderer.sortingOrder = t.contentOrder;
         Selector.instance.transform.position = t.worldPos;
         machine.selectedTile = t;
+    }
+
+    protected void ChangeUISelector(List<Image> buttons)
+    {
+        if (index == -1)
+        {
+            index = buttons.Count - 1;
+        }
+        else if (index == buttons.Count)
+        {
+            index = 0;
+        }
+
+        currentUISelector.transform.localPosition =
+        buttons[index].transform.localPosition;
     }
 }

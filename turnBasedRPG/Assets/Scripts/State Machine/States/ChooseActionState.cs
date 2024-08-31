@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class ChooseActionState : State
 {
-    int index;
     public override void Enter()
     {
         MoveSelector(Turn.unit.tile);
         base.Enter();
         index = 0;
-        ChangeUISelector();
+        currentUISelector = machine.chooseActionSelection;
+        ChangeUISelector(machine.chooseActionButtons);
         CheckAction();
         inputs.OnMove += OnMove;
         inputs.OnFire += OnFire;
@@ -32,11 +32,11 @@ public class ChooseActionState : State
         if(button == Vector3Int.left)
         {
             index--;
-            ChangeUISelector();
+            ChangeUISelector(machine.chooseActionButtons);
         }else if(button == Vector3Int.right)
         {
             index++;
-            ChangeUISelector();
+            ChangeUISelector(machine.chooseActionButtons);
         }
     }
 
@@ -53,24 +53,8 @@ public class ChooseActionState : State
         }
     }
 
-    void ChangeUISelector()
-    {
-        if (index == -1)
-        {
-            index = machine.chooseActionButtons.Count - 1;
-        }else if(index == machine.chooseActionButtons.Count)
-        {
-            index = 0;
-        }
-
-        machine.chooseActionSelection.transform.localPosition =
-        machine.chooseActionButtons[index].transform.localPosition;
-    }
-
     void ActionButtons()
     {
-        Debug.Log(index);
-
         switch (index)
         {
             case 0:
@@ -78,7 +62,8 @@ public class ChooseActionState : State
                     machine.ChangeTo<MoveSelectionState>();
                 break;
             case 1:
-                //machine.ChangeTo<ActionSelectState>();
+                if (!Turn.hasActed)
+                    machine.ChangeTo<SkillSelectionState>();
                 break;
             case 2:
                 //machine.ChangeTo<ItemSelectState>();

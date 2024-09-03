@@ -14,4 +14,15 @@ public class Skill : MonoBehaviour
             return true;
         return false;
     }
+
+    public bool ValidateTarget()
+    {
+        Unit unit = null;
+        if (StateMachineController.instance.selectedTile.content != null)
+            unit = StateMachineController.instance.selectedTile.content.GetComponent<Unit>();
+
+        if (unit != null)
+            return true;
+        return false;
+    }
 }

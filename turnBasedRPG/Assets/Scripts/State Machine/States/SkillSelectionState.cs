@@ -82,7 +82,7 @@ public class SkillSelectionState : State
         {
             Debug.Log("Usando" + skills[index].name);
             Turn.skill = skills[index];
-            machine.ChangeTo<PerformSkillState>();
+            machine.ChangeTo<SkillTargetState>();
         }
     }
 }

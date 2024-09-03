@@ -41,6 +41,13 @@ public class MapLoader : MonoBehaviour
         Quaternion.identity, holder.transform);
         unit.tile = t;
         unit.name = name;
+        t.content = unit.gameObject;
+
+        for (int i=0; i<unit.stats.stats.Count; i++)
+        {
+            unit.stats.stats[i].value = Random.Range(1, 100);
+        }
+
         return unit;
     }
 }

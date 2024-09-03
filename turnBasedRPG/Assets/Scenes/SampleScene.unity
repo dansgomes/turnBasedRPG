@@ -956,7 +956,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.058548
+  orthographic size: 3.6217782
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -980,7 +980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.27, y: -0.94, z: -10}
+  m_LocalPosition: {x: -0.31, y: 0.78, z: -10}
   m_LocalScale: {x: 1.0619, y: 1.0619, z: 1.0619}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2221,6 +2221,7 @@ MonoBehaviour:
   - {fileID: 230408986}
   skillSelectionSelection: {fileID: 1486465520}
   skillSelectionPanel: {fileID: 53764794}
+  skillSelectionBlocked: {fileID: 21300000, guid: c5134cda5cf83c948a12aeadb4f5f5a9, type: 3}
 --- !u!1 &1876718765
 GameObject:
   m_ObjectHideFlags: 0

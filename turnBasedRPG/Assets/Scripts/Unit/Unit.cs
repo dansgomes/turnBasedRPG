@@ -17,5 +17,10 @@ public class Unit : MonoBehaviour
     {
         return stats.stats[(int)stat].value;
     }
+
+    public void SetStat(StatEnum stat, int value)
+    {
+        stats.stats[(int)stat].value = GetStat(stat) + value;
+    }
     
 }

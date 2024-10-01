@@ -1567,6 +1567,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitPrefab: {fileID: 4258192805927586113, guid: 053a4670078872d4c9275eefa1d66b95, type: 3}
+  alliances:
+  - factions: 00000000
+    units: []
+  - factions: 01000000
+    units: []
 --- !u!4 &1203941824
 Transform:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour
     public int faction;
     public TileLogic tile;
     public int ChargeTime;
+    public bool active;
     void Awake()
     {
         stats = GetComponentInChildren<Stats>();

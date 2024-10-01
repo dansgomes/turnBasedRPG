@@ -11,6 +11,8 @@ public class MapLoader : MonoBehaviour
     //localização das unidades nesse mapa
     public static MapLoader instance;
     GameObject holder;
+    public List<Alliance> alliances;
+
     void Awake()
     {
         instance = this;
@@ -20,6 +22,15 @@ public class MapLoader : MonoBehaviour
     private void Start()
     {
         holder.transform.parent = Board.instance.transform;
+        InitializeAlliances();
+    }
+
+    void InitializeAlliances()
+    {
+        for (int i=0; i<alliances.Count; i++)
+        {
+            alliances[i].units = new List<Unit>();
+        }
     }
 
     public void CriaUnidades()

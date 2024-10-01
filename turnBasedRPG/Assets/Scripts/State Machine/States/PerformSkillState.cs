@@ -16,7 +16,20 @@ public class PerformSkillState : State
         Turn.targets = Turn.skill.GetTargets();
         yield return null;
         Turn.skill.Effect();
-        yield return new WaitForSeconds(1.5f);
+        yield return null;
+        //aplicaria os efeitos de final do turno
+
+        //
+        CombatLog.CheckActive();
+        yield return new WaitForSeconds(1);
+        if (CombatLog.IsOver())
+        {
+            Debug.Log("Acabou");
+        }
+        else
+        {
+            machine.ChangeTo<TurnEndState>();
+        }
         machine.ChangeTo<TurnEndState>();
     }
 }
